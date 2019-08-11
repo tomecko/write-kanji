@@ -1,0 +1,16 @@
+.config {
+  display: flex;
+  padding: 1em;
+}
+
+.config-item {
+  margin-right: 2em;
+}
+
+.config-item-label {
+  margin-right: 4px;
+}
+
+.print {
+  text-transform: uppercase;
+}
