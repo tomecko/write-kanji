@@ -43,7 +43,7 @@ function App() {
             className="input"
             value={input}
             onChange={e => setInput(e.target.value)}
-            placeholder="paste kanji separated by commas"
+            placeholder="paste comma-separated kanji/vocab"
             rows="10"
           ></textarea>
         </div>
