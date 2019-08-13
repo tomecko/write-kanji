@@ -16,6 +16,11 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn test
+      - run: yarn build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - build
 
   deploy:
     machine:
@@ -27,7 +32,6 @@ jobs:
           fingerprints:
             - "c8:14:9d:3b:57:2f:b0:2f:f7:44:5c:08:b0:c7:a1:8c"
       - run: echo $REMOTE_HOSTKEY >> ~/.ssh/known_hosts
-      - run: yarn build
       - run:
           name: Deploy Over SSH
           no_output_timeout: 1m
