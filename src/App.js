@@ -29,7 +29,7 @@ function App() {
       <header className="no-print">
         <h1>Write Kanji</h1>
         <p>
-          Generate kanji writing practice worksheet.<br/>
+          Generate and print kanji writing practice worksheets.<br/>
           Works well with items copied from {' '}
           <a href="https://www.wkstats.com:10001/items/joyo">
             https://www.wkstats.com:10001/items/joyo
