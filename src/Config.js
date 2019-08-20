@@ -3,9 +3,9 @@ import './Config.css';
 
 function Config({ onChange }) {
   const [config, setConfig] = useState({
-    columnCount: "2",
+    columnCount: 2,
     fontSize: 30,
-    grayKanji: true,
+    grayKanjiCount: 3,
     middleLine: true,
     removeDuplicates: true,
     rotate: false,
@@ -22,7 +22,7 @@ function Config({ onChange }) {
         <label className="config-item-label">
           font size:{" "}
           <select
-            onChange={e => setConfig({ ...config, fontSize: e.target.value })}
+            onChange={e => setConfig({ ...config, fontSize: Number(e.target.value) })}
             value={config.fontSize}
           >
             {[10, 12, 14, 18, 24, 30, 36, 48, 60, 72, 96].map(fontSize => (
@@ -37,12 +37,27 @@ function Config({ onChange }) {
         <label className="config-item-label">
           columns:{" "}
           <select
-            onChange={e => setConfig({ ...config, columnCount: e.target.value })}
+            onChange={e => setConfig({ ...config, columnCount: Number(e.target.value) })}
             value={config.columnCount}
           >
-            {["1", "2", "3", "4"].map(columnCount => (
+            {[1, 2, 3, 4].map(columnCount => (
               <option key={columnCount} value={columnCount}>
                 {columnCount}
+              </option>
+            ))}
+          </select>
+        </label>
+      </p>
+      <p className="config-item">
+        <label className="config-item-label">
+          gray kanji:{" "}
+          <select
+            onChange={e => setConfig({ ...config, grayKanjiCount: Number(e.target.value) })}
+            value={config.grayKanjiCount}
+          >
+            {Array(11).fill().map((_, i) => i).map(grayKanjiCount => (
+              <option key={grayKanjiCount} value={grayKanjiCount}>
+                {grayKanjiCount}
               </option>
             ))}
           </select>
@@ -52,7 +67,6 @@ function Config({ onChange }) {
         { key: "shuffle", name: "shuffle" },
         { key: "removeDuplicates", name: "remove duplicates" },
         { key: "middleLine", name: "middle line" },
-        { key: "grayKanji", name: "gray kanji" },
         { key: "rotate", name: "rotate" },
       ].map(({ key, name}) => (
         <label className="config-item" key={key}>

@@ -60,8 +60,12 @@ function App() {
                   config.rotate ? "output-rotate" : ""}`}
               >
                 <span className="output-example">{ text }</span>
-                {config.grayKanji
-                  ? <span className="output-example output-example-gray">{ text }</span>
+                {config.grayKanjiCount
+                  ? Array(config.grayKanjiCount).fill().map((_, j) => (
+                    <span className="output-example output-example-gray" key={j}>
+                      { text }
+                    </span>
+                  ))
                   : ''
                 }
               </p>
