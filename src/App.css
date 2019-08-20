@@ -47,7 +47,7 @@ header a {
   position: relative;
 }
 
-.output-line-horizontal:before {
+.output-middle-line:before {
   content: "";
   border-top: 1pt solid #eee;
   position: absolute;
@@ -59,9 +59,17 @@ header a {
 }
 
 .output-example {
-  border-right: 1px solid #ddd;
+  display: inline-block;
   padding-left: 0.1em;
   padding-right: 0.1em;
+}
+
+.output-example-gray {
+  color: #bbb;
+}
+
+.output-rotate .output-example {
+  transform: rotate(-90deg);
 }
 
 .output-placeholder {

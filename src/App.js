@@ -49,15 +49,21 @@ function App() {
         </div>
         {input
           ? <div
-              className={`output ${config.fontSize ? `font-${config.fontSize}` : ""}`}
-              style={{ columns: config.columnCount }}
+              className="output"
+              style={{ columns: config.columnCount, fontSize: `${config.fontSize}px` }}
             >
             { output.map((text, i) => (
               <p
                 key={i}
-                className={`output-line ${config.horizontalLine ? "output-line-horizontal" : ""}`}
+                className={`output-line ${
+                  config.middleLine ? "output-middle-line" : ""} ${
+                  config.rotate ? "output-rotate" : ""}`}
               >
                 <span className="output-example">{ text }</span>
+                {config.grayKanji
+                  ? <span className="output-example output-example-gray">{ text }</span>
+                  : ''
+                }
               </p>
             )) }
           </div>

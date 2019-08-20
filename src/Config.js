@@ -4,10 +4,12 @@ import './Config.css';
 function Config({ onChange }) {
   const [config, setConfig] = useState({
     columnCount: "2",
-    fontSize: "medium",
-    shuffle: true,
+    fontSize: 30,
+    grayKanji: true,
+    middleLine: true,
     removeDuplicates: true,
-    horizontalLine: true,
+    rotate: false,
+    shuffle: true,
   });
   onChange(config);
 
@@ -17,39 +19,41 @@ function Config({ onChange }) {
         <button onClick={window.print} className="print">print</button>
       </p>
       <p className="config-item">
-        font size:
-        {["small", "medium", "large"].map(fontSize => (
-          <label className="config-item-label" key={fontSize}>
-            <input
-              onChange={e => setConfig({ ...config, fontSize: e.target.value })}
-              type="radio"
-              name="fontSize"
-              value={fontSize}
-              checked={fontSize === config.fontSize}
-            />
-            {fontSize}
-          </label>
-        ))}
+        <label className="config-item-label">
+          font size:{" "}
+          <select
+            onChange={e => setConfig({ ...config, fontSize: e.target.value })}
+            value={config.fontSize}
+          >
+            {[10, 12, 14, 18, 24, 30, 36, 48, 60, 72, 96].map(fontSize => (
+              <option key={fontSize} value={fontSize}>
+                {fontSize}
+              </option>
+            ))}
+          </select>
+        </label>
       </p>
       <p className="config-item">
-        columns count:
-        {["1", "2", "3"].map(columnCount => (
-          <label key={columnCount}>
-            <input
-              onChange={e => setConfig({ ...config, columnCount: e.target.value })}
-              type="radio"
-              name="columnCount"
-              value={columnCount}
-              checked={columnCount === config.columnCount}
-            />
-            {columnCount}
-          </label>
-        ))}
+        <label className="config-item-label">
+          columns:{" "}
+          <select
+            onChange={e => setConfig({ ...config, columnCount: e.target.value })}
+            value={config.columnCount}
+          >
+            {["1", "2", "3", "4"].map(columnCount => (
+              <option key={columnCount} value={columnCount}>
+                {columnCount}
+              </option>
+            ))}
+          </select>
+        </label>
       </p>
       {[
         { key: "shuffle", name: "shuffle" },
         { key: "removeDuplicates", name: "remove duplicates" },
-        { key: "horizontalLine", name: "horizontal line" },
+        { key: "middleLine", name: "middle line" },
+        { key: "grayKanji", name: "gray kanji" },
+        { key: "rotate", name: "rotate" },
       ].map(({ key, name}) => (
         <label className="config-item" key={key}>
           <input
