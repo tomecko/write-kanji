@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Config from './Config';
 import { deduplicatePrimitivesArray, shuffleArray } from './helpers';
+import { Texts } from './Texts';
 
 import './App.css';
 
@@ -19,7 +20,7 @@ const getOutput = (config) => (input) => {
   return output;
 }
 
-function App() {
+export function App() {
   const [input, setInput] = useState('々,一,丁,七,万,三,上,下,不,中');
   const [config, setConfig] = useState({});
   const output = getOutput(config)(input);
@@ -53,22 +54,7 @@ function App() {
               style={{ columns: config.columnCount, fontSize: `${config.fontSize}px` }}
             >
             { output.map((text, i) => (
-              <p
-                key={i}
-                className={`output-line ${
-                  config.middleLine ? "output-middle-line" : ""} ${
-                  config.rotate ? "output-rotate" : ""}`}
-              >
-                <span className="output-example">{ text }</span>
-                {config.grayKanjiCount
-                  ? Array(config.grayKanjiCount).fill().map((_, j) => (
-                    <span className="output-example output-example-gray" key={j}>
-                      { text }
-                    </span>
-                  ))
-                  : ''
-                }
-              </p>
+              <Texts config={config} text={text} key={i} />
             )) }
           </div>
           : <p className="output-placeholder">Cool stuff will appear here…</p>}
@@ -84,5 +70,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
