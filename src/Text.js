@@ -1,8 +1,8 @@
 import React from 'react';
 
-export function Text({ className, text }) {
+export function Text({ className, style, text }) {
   return (
-    <span>
+    <span style={style}>
       {text.split('').map((letter, i) => (
         <span className={className} key={i}>{ letter }</span>
       ))}

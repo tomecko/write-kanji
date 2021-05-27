@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import './Config.css';
 
+const GRAY_KANJI_COLORS = [
+  'very light gray (#eee)',
+  'light gray (#ccc)',
+  'gray (#aaa)',
+  'dark gray (#777)',
+  'very dark gray (#333)',
+];
+
 function Config({ onChange }) {
   const [config, setConfig] = useState({
     columnCount: 2,
     fontSize: 30,
     grayKanjiCount: 3,
+    grayKanjiColor: GRAY_KANJI_COLORS[1],
     middleLine: true,
     removeDuplicates: true,
     rotate: false,
@@ -58,6 +67,18 @@ function Config({ onChange }) {
             {Array(11).fill().map((_, i) => i).map(grayKanjiCount => (
               <option key={grayKanjiCount} value={grayKanjiCount}>
                 {grayKanjiCount}
+              </option>
+            ))}
+          </select>
+          <select
+            onChange={e => {
+              setConfig({ ...config, grayKanjiColor: e.target.value })
+            }}
+            value={config.grayKanjiColor}
+          >
+            {GRAY_KANJI_COLORS.map(grayKanjiColor => (
+              <option key={grayKanjiColor} value={grayKanjiColor}>
+                {grayKanjiColor}
               </option>
             ))}
           </select>

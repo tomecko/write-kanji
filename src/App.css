@@ -65,10 +65,6 @@ header a {
   padding-right: 0.1em;
 }
 
-.output-example-gray {
-  color: #eee;
-}
-
 .output-rotate .output-example {
   transform: rotate(-90deg);
 }

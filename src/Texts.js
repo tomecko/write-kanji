@@ -3,6 +3,8 @@ import React from 'react';
 import { Text } from './Text';
 
 export function Texts({ config, text }) {
+  const grayKanjiColorHex = config.grayKanjiColor &&
+    config.grayKanjiColor.replace('(', '|').replace(')', '|').split('|')[1].trim();
   return (
     <p
       className={`output-line ${
@@ -12,7 +14,12 @@ export function Texts({ config, text }) {
       <Text className="output-example" text={text} />
       {config.grayKanjiCount
         ? Array(config.grayKanjiCount).fill().map((_, i) => (
-          <Text className="output-example output-example-gray" text={text} key={i} />
+          <Text
+            className="output-example"
+            text={text}
+            style={{ color: grayKanjiColorHex }}
+            key={i}
+          />
         ))
         : ''
       }
